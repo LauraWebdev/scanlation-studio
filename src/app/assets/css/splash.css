@@ -1,0 +1,25 @@
+/* THEME OPTIONS
+   eg: UI fonts, UI colors
+ */
+/* LIGHT THEME */
+:root {
+  --generalBackgroundColor: #fff;
+  --generalFontColor: #000;
+  --boxBorderRadius: 4px;
+}
+/* DARK THEME */
+/*
+    COMMON UI BLOCKS
+    eg: Buttons, Inputs
+ */
+/*
+    RENDER STYLES
+    eg: Render Plane, TextBlock
+ */
+/*
+    UI STYLES FOR SPLASH
+ */
+body {
+  background: var(--generalBackgroundColor);
+}
+/*# sourceMappingURL=splash.css.map */

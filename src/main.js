@@ -29,7 +29,7 @@ const createWindow = () => {
   mainWindow.webContents.openDevTools();
   
   // Disable menubar
-  mainWindow.setMenu(null);
+  // mainWindow.setMenu(null);
 
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {

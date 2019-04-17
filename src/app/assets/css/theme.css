@@ -1,0 +1,11 @@
+/* THEME OPTIONS
+   eg: UI fonts, UI colors
+ */
+/* LIGHT THEME */
+:root {
+  --generalBackgroundColor: #fff;
+  --generalFontColor: #000;
+  --boxBorderRadius: 4px;
+}
+/* DARK THEME */
+/*# sourceMappingURL=theme.css.map */
