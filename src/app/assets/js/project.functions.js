@@ -5,6 +5,7 @@ function loadProject( projectPath ) {
     console.log("[PROJECT] Load Project: " + projectPath);
 
     // Load Settings JSON
+    return new Project();
 }
 
 function newProject( projectPath, projectTitle, projectOriginalTitle ) {
