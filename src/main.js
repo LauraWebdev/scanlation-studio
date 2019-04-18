@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+const { app, BrowserWindow, ipcMain } = require('electron');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -62,5 +62,11 @@ app.on('activate', () => {
   }
 });
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.
+let projectPath = "";
+ipcMain.on('transition-loadproject', (event, arg) => {
+    projectPath = arg;
+    mainWindow.loadURL(`file://${__dirname}/app/app.htm`);
+    mainWindow.webContents.on('did-finish-load', function() {
+        mainWindow.webContents.send('transition-loadproject', arg);
+    });
+});
