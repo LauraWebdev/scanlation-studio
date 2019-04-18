@@ -7,4 +7,50 @@
  */
 body {
   background: var(--generalBackgroundColor);
+  font-family: var(--generalFontFamily);
+  font-size: var(--generalFontSize);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas:
+    "header header"
+    "sidebar content";
+  grid-gap: 25px;
+  padding: 50px;
+  height: 100vh;
+  overflow: hidden;
+}
+header {
+  grid-area: header;
+
+  & .brand {
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 400;
+
+    & span {
+      margin-right: 10px;
+      font-weight: 700;
+    }
+  }
+}
+aside {
+  grid-area: sidebar;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-gap: 15px;
+
+  & div {
+    & a {
+      display: block;
+      margin-bottom: 10px;
+    }
+  }
+}
+main {
+  background: var(--boxBackgroundColor);
+  border-radius: var(--boxBorderRadius);
+  box-shadow: var(--boxShadow);
+  padding: 25px;
 }

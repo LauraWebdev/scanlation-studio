@@ -3,18 +3,65 @@
  */
 /* LIGHT THEME */
 :root {
-  --generalBackgroundColor: #fff;
+  --generalFontFamily: "Product Sans";
+  --generalFontSize: 16px;
+  --generalBackgroundColor: #f1f1f1;
   --generalFontColor: #000;
   --primaryColorOne: #EB3348;
   --primaryColorTwo: #FF3D1E;
   --primaryGradient: linear-gradient(135deg, var(--primaryColorTwo), var(--primaryColorOne));
   --boxBorderRadius: 4px;
+  --boxShadow: 0px 0px 1px rgba(0, 0, 0, 0.3), 0px 4px 8px rgba(0,0,0,0.15);
+  --boxBackgroundColor: #fff;
 }
 /* DARK THEME */
 /*
     COMMON UI BLOCKS
     eg: Buttons, Inputs
  */
+.button {
+  background: var(--boxBackgroundColor);
+  box-shadow: var(--boxShadow);
+  color: var(--primaryColorOne);
+  border-radius: var(--boxBorderRadius);
+  border: 2px solid transparent;
+  padding: 15px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.075em;
+  text-decoration: none;
+}
+.button:hover {
+  background: var(--primaryGradient);
+  color: #fff;
+}
+.button.button-ghost {
+  box-shadow: none;
+  background: transparent;
+  border: 2px solid var(--primaryColorOne);
+}
+.button.button-ghost:hover {
+  background: var(--primaryGradient);
+  color: #fff;
+}
+.button.button-icon {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  grid-gap: 10px;
+  padding: 10px 15px;
+}
+.button.button-icon div:nth-child(1) {
+  font-size: 18px;
+}
+.button.button-icon div:nth-child(2) {
+  font-weight: 400;
+  font-family: var(--generalFontFamily);
+  padding: 2px 0px;
+}
+.button:focus {
+  outline: 0;
+}
 /*
     RENDER STYLES
     eg: Render Plane, TextBlock
@@ -24,5 +71,44 @@
  */
 body {
   background: var(--generalBackgroundColor);
+  font-family: var(--generalFontFamily);
+  font-size: var(--generalFontSize);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas: "header header" "sidebar content";
+  grid-gap: 25px;
+  padding: 50px;
+  height: 100vh;
+  overflow: hidden;
+}
+header {
+  grid-area: header;
+}
+header .brand {
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 400;
+}
+header .brand span {
+  margin-right: 10px;
+  font-weight: 700;
+}
+aside {
+  grid-area: sidebar;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-gap: 15px;
+}
+aside div a {
+  display: block;
+  margin-bottom: 10px;
+}
+main {
+  background: var(--boxBackgroundColor);
+  border-radius: var(--boxBorderRadius);
+  box-shadow: var(--boxShadow);
+  padding: 25px;
 }
 /*# sourceMappingURL=splash.css.map */
