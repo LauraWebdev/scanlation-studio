@@ -3,3 +3,4 @@ out
 
 .idea/
 package-lock.json
+test/*
