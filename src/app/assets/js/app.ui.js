@@ -9,4 +9,7 @@ function uiBackToSplash() {
 }
 
 // RUNTIME
-ProjectTools.loadProject( "debug/" );
+let project = ProjectTools.loadProject( "debug/" );
+let renderplane = document.querySelector(".renderplane");
+
+RenderTools.render(renderplane, project, 1, 1);
