@@ -11,17 +11,29 @@
 		</head>
 		<body>
 			<header>
-				<a href="splash.htm">Back</a>
-				Project settings, Save
+				<div class="menu"><i class="mdi mdi-menu"></i></div>
+				<div class="projectTitle">Chapter 1 - Page 1</div>
+				<!-- <div class="button button-icon btn-primary"><i class="mdi mdi-folder-open"></i></div>
+				<div class="button button-icon btn-primary"><i class="mdi mdi-content-save"></i></div> -->
 			</header>
 
-			<aside>
-				Tools
+			<aside class="tools">
+				<div class="tool active" data-tool="0"><i class="mdi mdi-cursor-default"></i></div>
+				<div class="tool" data-tool="1"><i class="mdi mdi-cursor-move"></i></div>
+				<div class="tool" data-tool="2"><i class="mdi mdi-magnify"></i></div>
+
+				<div class="spacer"></div>
+
+				<div class="tool" data-tool="3"><i class="mdi mdi-format-text"></i></div>
 			</aside>
 
 			<main>
 				<div class="renderplane"></div>
 			</main>
+
+			<aside class="properties">
+				Properties, Layers
+			</aside>
 
 			<script src="assets/js/app.ui.js"></script>
 		</body>

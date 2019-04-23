@@ -1,5 +1,6 @@
 const electron = require('electron');
 const { dialog, remote } = electron.remote;
+const settings = require('electron-settings');
 const ProjectTools = require('./assets/js/project.functions.js');
 
 // REFERENCES
@@ -7,7 +8,22 @@ const ProjectTools = require('./assets/js/project.functions.js');
 // GENERAL FUNCTIONS
 function loadProjects() {
     // Load latest Projects from settings
-    // TODO
+    let recentProjects = ProjectTools.getRecentProjects();
+    let recentProjectsTable = document.querySelector("#recentProjects");
+
+    recentProjects.forEach(function(data) {
+        let recentProjectsTableNew = document.createElement("tr");
+        let recentProjectsTableNew1 = document.createElement("td");
+        let recentProjectsTableNew2 = document.createElement("td");
+
+        recentProjectsTableNew1.innerHTML = data.title + "<br />" + data.path;
+        recentProjectsTableNew2.innerText = data.lastUpdate;
+
+        recentProjectsTableNew.appendChild(recentProjectsTableNew1);
+        recentProjectsTableNew.appendChild(recentProjectsTableNew2);
+
+        recentProjectsTable.appendChild(recentProjectsTableNew);
+    });
 }
 
 // UI FUNCTIONS
@@ -18,19 +34,13 @@ function uiNewProject() {
     });
 
     if(newProjectPath !== undefined) {
-        let newProjectSlug = "debug-" + Date.now().toString();
-
         console.log("[UI][NewProject] ProjectPath: " + newProjectPath);
-        console.log("[UI][NewProject] ProjectSlug: " + newProjectSlug);
 
         // Create new Project
-        let projectCreationResult = ProjectTools.newProject(newProjectPath, newProjectSlug);
+        let projectCreationResult = ProjectTools.newProject(newProjectPath);
         if(projectCreationResult[0] === true) {
-            // Add Project to latest Projects
-            // TODO
-
             // Project created successfully, open project!
-            electron.ipcRenderer.send('transition-loadproject', newProjectPath + "/" + newProjectSlug);
+            electron.ipcRenderer.send('transition-loadproject', newProjectPath);
         } else {
             // Project could not be created, error display!
             console.error("[UI][NewProject] Project Creation wasn't successful!");
@@ -40,23 +50,21 @@ function uiNewProject() {
         console.error("[UI][NewProject] Cancelled Path Selection");
     }
 }
-function uiOpenProject( projectPath ) {
+function uiOpenProject() {
     // Show OPEN FOLDER Dialog
-    // TODO
+    let openProjectPath = dialog.showOpenDialog({
+        properties: ['openDirectory']
+    });
 
-    // Add Project to latest Projects
-    // TODO
-
-    // Send to App
-    window.location = 'app.htm';
+    if(openProjectPath !== undefined) {
+        // Open Project
+        electron.ipcRenderer.send('transition-loadproject', openProjectPath);
+    } else {
+        console.error("[UI][OpenProject] Cancelled Path Selection");
+    }
 }
 function uiSelectProject( projectPath ) {
-
-    // Add Project to latest Projects
     // TODO
-
-    // Send to App
-    window.location = 'app.htm';
 }
 
 // RUNTIME

@@ -5,14 +5,13 @@
 :root {
   --generalFontFamily: "Product Sans";
   --generalFontSize: 16px;
-  --generalBackgroundColor: #f1f1f1;
-  --generalFontColor: #000;
+  --generalBackgroundColor: #2B2B2B;
+  --generalBackgroundColorShade1: rgba(255, 255, 255, 0.05);
+  --generalBackgroundColorShade2: rgba(255, 255, 255, 0.1);
+  --generalFontColor: #fff;
   --primaryColorOne: #EB3348;
   --primaryColorTwo: #FF3D1E;
   --primaryGradient: linear-gradient(135deg, var(--primaryColorTwo), var(--primaryColorOne));
-  --boxBorderRadius: 4px;
-  --boxShadow: 0px 0px 1px rgba(0, 0, 0, 0.3), 0px 4px 8px rgba(0,0,0,0.15);
-  --boxBackgroundColor: #fff;
 }
 /* DARK THEME */
 /*
@@ -20,10 +19,9 @@
     eg: Buttons, Inputs
  */
 .button {
-  background: var(--boxBackgroundColor);
-  box-shadow: var(--boxShadow);
-  color: var(--primaryColorOne);
-  border-radius: var(--boxBorderRadius);
+  background: var(--generalBackgroundColorShade2);
+  color: var(--generalFontColor);
+  border-radius: 4px;
   border: 2px solid transparent;
   padding: 15px 15px;
   font-size: 14px;
@@ -34,16 +32,12 @@
 }
 .button:hover {
   background: var(--primaryGradient);
-  color: #fff;
 }
-.button.button-ghost {
-  box-shadow: none;
-  background: transparent;
-  border: 2px solid var(--primaryColorOne);
+.button.button-secondary {
+  background: var(--generalBackgroundColorShade1);
 }
-.button.button-ghost:hover {
+.button.button-secondary:hover {
   background: var(--primaryGradient);
-  color: #fff;
 }
 .button.button-icon {
   display: grid;
@@ -73,6 +67,7 @@ body {
   background: var(--generalBackgroundColor);
   font-family: var(--generalFontFamily);
   font-size: var(--generalFontSize);
+  color: var(--generalFontColor);
   display: grid;
   grid-template-rows: auto 1fr;
   grid-template-columns: 1fr 2fr;
@@ -106,9 +101,6 @@ aside div a {
   margin-bottom: 10px;
 }
 main {
-  background: var(--boxBackgroundColor);
-  border-radius: var(--boxBorderRadius);
-  box-shadow: var(--boxShadow);
   padding: 25px;
 }
 /*# sourceMappingURL=splash.css.map */

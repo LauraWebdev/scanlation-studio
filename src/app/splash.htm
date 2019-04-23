@@ -16,25 +16,25 @@
 
 			<aside>
 				<div>
-					<a href="" class="button button-primary button-icon">
+					<a href="javascript:void(0);" onclick="uiNewProject()" class="button button-primary button-icon">
 						<div><i class="mdi mdi-folder-plus"></i></div>
 						<div>New Project</div>
 					</a>
-					<a href="" class="button button-primary button-icon">
+					<a href="javascript:void(0);" onclick="uiOpenProject()" class="button button-primary button-icon">
 						<div><i class="mdi mdi-folder"></i></div>
 						<div>Open Project</div>
 					</a>
 				</div>
 				<div>
-					<a href="" class="button button-ghost button-icon">
+					<a href="" class="button button-secondary button-icon">
 						<div><i class="mdi mdi-cloud-download"></i></div>
 						<div>Patchnotes</div>
 					</a>
-					<a href="" class="button button-ghost button-icon">
+					<a href="" class="button button-secondary button-icon">
 						<div><i class="mdi mdi-lifebuoy"></i></div>
 						<div>Support & Help</div>
 					</a>
-					<a href="" class="button button-ghost button-icon">
+					<a href="" class="button button-secondary button-icon">
 						<div><i class="mdi mdi-information-outline"></i></div>
 						<div>About</div>
 					</a>
@@ -42,9 +42,17 @@
 			</aside>
 
 			<main>
-				<button onclick="uiNewProject()">New Project</button>
-				<button onclick="uiOpenProject()">Open Project</button>
-				<a href="" class="button button-primary">Lorem Ipsum</a>
+				<table style="width: 100%;">
+					<thead>
+						<tr>
+							<th>Title / Path</th>
+							<th style="width: 20%">Last Update</th>
+						</tr>
+					</thead>
+					<tbody id="recentProjects">
+
+					</tbody>
+				</table>
 			</main>
 
 			<script src="assets/js/splash.ui.js"></script>

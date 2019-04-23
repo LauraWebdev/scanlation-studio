@@ -1,27 +1,33 @@
 const fs = require('fs');
-const path = require('path');
+const settings = require('electron-settings');
 const Project = require('./models/Project.js');
 const ProjectSettings = require('./models/ProjectSettings.js');
 
 function loadProject( projectPath ) {
-    console.log("[PROJECT][LOAD] Project Path: " + projectPath);
+    // Load ProjectSettings
+    let projectSettingsData = fs.readFileSync(projectPath + "/ProjectSettings.sls", "utf8");
 
     // Load Settings JSON
-    let project = new Project();
+    let project = JSON.parse(projectSettingsData);
+
+    // Change Window Title
+    window.document.title = project.settings.title + " [" + projectPath + "] - ScanlationStudio";
+
+    // Add Project to RecentProjects
+    addToRecentProjects({path: projectPath, title: project.settings.title, lastUpdate: project.settings.lastUpdate});
 
     return [true, project];
 }
 
-function newProject( projectPath, projectSlug, projectTitle, projectOriginalTitle ) {
+function newProject( projectPath, projectTitle, projectOriginalTitle ) {
     // Check if folder already exists
-    if(fs.existsSync(projectPath + "/" + projectSlug)) {
+    if(fs.existsSync(projectPath)) {
         return [false, "Folder already exists!"];
     }
 
     // Create Folders
     try {
-        fs.mkdirSync(projectPath + "/" + projectSlug);
-        fs.mkdirSync(projectPath + "/" + projectSlug + "/Chapters");
+        fs.mkdirSync(projectPath + "/Chapters");
 
         // Create Settings JSON
         let newProjectSettings = new ProjectSettings(projectTitle, projectOriginalTitle);
@@ -29,7 +35,7 @@ function newProject( projectPath, projectSlug, projectTitle, projectOriginalTitl
 
         // Save new Project
         let fileData = JSON.stringify(newProject);
-        fs.writeFileSync(projectPath + "/" + projectSlug + "/ProjectSettings.sls", fileData);
+        fs.writeFileSync(projectPath + "/ProjectSettings.sls", fileData);
 
         return [true, "Project created successfully!"];
     } catch(e) {
@@ -39,7 +45,21 @@ function newProject( projectPath, projectSlug, projectTitle, projectOriginalTitl
     }
 }
 
+function addToRecentProjects( projectPath ) {
+    let currentRecentProjects = [];
+    currentRecentProjects = settings.get("recentProjects");
+
+    currentRecentProjects.unshift( projectPath );
+    settings.set("recentProjects", currentRecentProjects);
+}
+
+function getRecentProjects() {
+    return settings.get("recentProjects");
+}
+
 module.exports = {
     loadProject,
-    newProject
+    newProject,
+    addToRecentProjects,
+    getRecentProjects
 };

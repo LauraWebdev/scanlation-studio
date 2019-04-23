@@ -5,20 +5,37 @@ const RenderTools = require('./assets/js/renderer.functions.js');
 
 // REFERENCES
 let renderplane = document.querySelector(".renderplane");
+let project;
+let currentTool = 0;
 
 // UI FUNCTIONS
-function uiBackToSplash() {
-    window.location = 'splash.htm';
+let pageTools = document.querySelectorAll("aside.tools .tool");
+pageTools.forEach(function(pageTool) {
+    let toolID = pageTool.dataset.tool;
+
+    pageTool.addEventListener('click', function() {
+       toggleTool(toolID);
+    });
+});
+
+function toggleTool( toolID ) {
+    currentTool = toolID;
+
+    pageTools.forEach(function(pageTool) {
+        let toolID = pageTool.dataset.tool;
+
+        if(currentTool === toolID) {
+            pageTool.classList.add("active");
+        } else {
+            pageTool.classList.remove("active");
+        }
+    });
 }
 
-// RUNTIME
-electron.ipcRenderer.on('transition-loadproject', (event, args) => {
-    let projectPath = args;
-
+function init( projectPath ) {
     console.log("[APP] Loading Project...");
-    console.log("[APP] ProjectPath: " + projectPath);
     if(projectPath !== undefined || projectPath !== "") {
-        let project = ProjectTools.loadProject(projectPath);
+        project = ProjectTools.loadProject(projectPath);
 
         if(project[0] === true) {
             console.log("[APP] Rendering...");
@@ -30,4 +47,16 @@ electron.ipcRenderer.on('transition-loadproject', (event, args) => {
     } else {
         console.error("[APP] ProjectPath is not set!");
     }
+}
+
+// RUNTIME
+electron.ipcRenderer.on('transition-loadproject', (event, args) => {
+    let projectPath = args[0];
+
+    if(projectPath !== undefined) {
+        init(projectPath);
+    }
 });
+
+// DEBUG
+init( "F:\\Development\\scanlation-studio\\tests\\debugManga" );

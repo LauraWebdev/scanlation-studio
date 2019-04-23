@@ -1,0 +1,1 @@
+{"chapters":[],"settings":{"title":"Debug Manga","originalTitle":"デバッグマンガ","cleaning":"","translation":"","typesetting":"","qualitycheck":"","filesSource":"","lastUpdate":1556029213145}}

@@ -5,6 +5,97 @@
 /*
     UI STYLES FOR APP
  */
+html, body {
+  height: 100vh;
+  overflow: hidden;
+}
 body {
   background: var(--generalBackgroundColor);
+  font-family: var(--generalFontFamily);
+  font-size: var(--generalFontSize);
+  color: var(--generalFontColor);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 60px 1fr 280px;
+  grid-template-areas:
+          "header header header"
+          "tools main properties";
+
+  & header {
+    grid-area: header;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 15px;
+    background: var(--generalBackgroundColorShade2);
+
+    & .menu {
+      width: 60px;
+      font-size: 24px;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+        background: rgba(0,0,0,0.2);
+      }
+      &:active {
+        background: rgba(0,0,0,0.4);
+      }
+    }
+    & .projectTitle {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
+  & aside.tools {
+    grid-area: tools;
+    background: var(--generalBackgroundColorShade2);
+
+    & .tool {
+      font-size: 24px;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-right: 2px solid transparent;
+
+      &:hover {
+        background: rgba(0,0,0,0.2);
+      }
+      &:active {
+        background: rgba(0,0,0,0.4);
+      }
+
+      &.active {
+        background: var(--primaryGradient);
+      }
+    }
+    & .spacer {
+      height: 2px;
+      width: 40px;
+      border-radius: 2px;
+      margin: 15px auto;
+      background: rgba(255,255,255,0.2);
+    }
+  }
+  & main {
+    grid-area: main;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & .renderplane {
+      background: #fff;
+      min-width: 150px;
+      min-height: 150px;
+    }
+  }
+  & aside.properties {
+    grid-area: properties;
+    background: var(--generalBackgroundColorShade1);
+    padding: 15px;
+  }
 }
